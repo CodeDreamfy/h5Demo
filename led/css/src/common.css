@@ -1,0 +1,38 @@
+/* reset */
+* { box-sizing:  border-box;}
+html,body {
+  -webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  -webkit-tap-highlight-color: transparent;
+}
+ul,li,ol,h1,h2,h3,p { margin: 0; padding: 0;}
+a { text-decoration: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;}
+ul,ol { list-style: none;}
+em,i { font-style: normal;}
+h1,h2,h3 { font-size: 100%; font-weight: normal;}
+
+/* utils */
+.clearfix { *zoom: 1;}
+.clearfix:after { content:' '; display: block; clear: both; visibility: hidden; height: 0;}
+.hidden { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+/* common */
+.wrapper { width: 100%; height: 100%; margin: 0 auto; padding: 8px 6px 30px; overflow-y: auto; background: #efeff4; position: relative; }
+
+.overlay {
+  width: 100%; height: 100%;
+  position: fixed;
+  top: 0; left: 0; z-index: 100;
+  background: rgba(0,0,0,.5);
+}

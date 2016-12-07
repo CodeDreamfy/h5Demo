@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>设备详情</title>
+  <script type="text/javascript">
+  !(function(doc, win) {
+    var timer, docEle = doc.documentElement,
+    evt = "onorientationchange" in window ? "orientationchange": "resize",
+    setFontSize = function() {
+        var width = docEle.clientWidth;
+        var aaa = 750 / 10;
+        width && (docEle.style.fontSize = ((width / 750) * aaa) + "px");
+    };
+    win.addEventListener(evt,
+    function() {
+        clearTimeout(timer);
+        timer = setTimeout(setFontSize, 200);
+    },
+    false);
+    doc.addEventListener("DOMContentLoaded", setFontSize, false);
+  }(document, window));
+  </script>
+  <link rel="stylesheet" href="./css/lib/normalize.css">
+  <!--<link rel="stylesheet" href="http://appapi.heclouds.com/sdk/ojs.min.css?v=1.0">-->
+  <link rel="stylesheet" href="./css/main.min.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="hw-card disc-progress">
+      <div class="hw-card-content">
+        <div class="canvas-wrap">
+          <div class="place-canvas blue">
+            <div class="place-val">
+              <p class="model-val"><span>25</span><sup>o</sup></p>
+              <p class="model-name">冷</p>
+            </div>
+          </div>
+          <p class="title">温度(<sup>o</sup>度)</p>
+        </div>
+        <div class="canvas-wrap">
+          <div class="place-canvas red">
+            <div class="place-val">
+              <p class="model-val"><span>50</span></p>
+              <p class="model-name">干燥</p>
+            </div>
+          </div>
+          <p class="title">湿度(%RH)</p>
+        </div>
+      </div>
+    </div>
+    <div class="hw-card work-status">
+      <h3 class="hw-card-tit">工作状态</h3>
+      <div class="hw-card-content">
+        <div class="item">
+          <div class="icon-tit"><i></i><span>LED1</span></div>
+          <div class="checkbox-wrap"><input type="checkbox" disabled id="label-led1" class="hw-checkbox-toggle"><label for="label-led1"></label></div>
+        </div>
+        <div class="item">
+          <div class="icon-tit"><i></i><span>LED2</span></div>
+          <div class="checkbox-wrap"><input type="checkbox" id="label-led2" class="hw-checkbox-toggle"><label for="label-led2"></label></div>
+        </div>
+        <div class="item active">
+          <div class="icon-tit"><i></i><span>LED2</span></div>
+          <div class="checkbox-wrap"><input type="checkbox"  id="label-led3" class="hw-checkbox-toggle"><label for="label-led3"></label></div>
+        </div>
+        <div class="item active">
+          <div class="icon-tit"><i></i><span>LED2</span></div>
+          <div class="checkbox-wrap"><input type="checkbox" id="label-led4" class="hw-checkbox-toggle"><label for="label-led4"></label></div>
+        </div>
+        <div class="item-row item downBtn">
+          <a href="javascript:;" class="s1 active"><p class="title">key-1</p></a>
+          <a href="javascript:;" class="s2"><p class="title">key-2</p></a>
+          <a href="javascript:;" class="s3 active"><p class="title">key-3</p></a>
+          <a href="javascript:;" class="s4"><p class="title">key-4</p></a>
+        </div>
+      </div>
+    </div>
+    <div class="hw-card signal-wrap">
+      <div class="hw-card-conent">
+        <div class="item">
+          <p class="item-tit">信号强度：<span>差</span></p>
+          <div class="signal-reveal">
+            <span class="val">10</span>
+            <div class="reveal"><span class="hovernow"></span></div>
+          </div>
+        </div>
+        <div class="item">
+          <p class="item-tit">模组电压：<span>差</span></p>
+          <div class="signal-reveal">
+            <span class="val">3600mv</span>
+            <div class="reveal"><span class="hovernow"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="http://appapi.heclouds.com/sdk/ojs.min.js?v=1.0"></script> -->
+  <script src="./js/lib/sdk.min.js" ></script>
+  <script src="./js/dest/hw-ui.js" ></script>
+  <script src="./js/dest/main.js" ></script>
+</body>
+</html>
