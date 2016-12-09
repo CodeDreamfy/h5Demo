@@ -3,3 +3,4 @@ home-config.js
 app.js
 yarn-error.log
 yarn.lock
+.gitignore
