@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>灯控详情页</title>
+  <script src="js/lib/flexible.js"></script>
+  <link rel="stylesheet" href="./css/lib/normalize.css">
+  <!--<link rel="stylesheet" href="http://appapi.heclouds.com/sdk/ojs.min.css?v=1.0">-->
+  <link rel="stylesheet" href="./css/main.min.css">
+</head>
+<body>
+  <div class="led-wrapper">
+    <div class="header">
+      <div class="checkbox-wrap dianji">
+        <span class="label-val">电机</span>
+        <input type="checkbox" id="label-led1" class="hw-checkbox-toggle"><label for="label-led1"></label>
+      </div>
+      <div class="led-status-wrap">
+        <span class="label-val">设备状态</span><em class="online"></em>
+      </div>
+    </div>
+    <div class="conent-main">
+      <div class="conetent">
+        <div class="ledwrap">
+          <div class="r1"></div>
+          <div class="r2"></div>
+          <div class="r3"></div>
+        </div>
+        <ul class="sensor-wrapper">
+          <li class="sensor-item temp">
+            <span class="icon"></span>
+            <div class="val-wrap">
+              <p class="val"><em>36</em><sup>o</sup>C</p>
+              <p class="name">温度</p>
+            </div>
+          </li>
+          <li class="sensor-item humidity">
+            <span class="icon"></span>
+            <div class="val-wrap">
+              <p class="val"><em>--</em>%</p>
+              <p class="name">湿度</p>
+            </div>
+          </li>
+          <li class="sensor-item intensity">
+            <span class="icon"></span>
+            <div class="val-wrap">
+              <p class="val"><em>--</em>flux</p>
+              <p class="name">光强</p>
+            </div>
+          </li>
+          <li class="sensor-item distance">
+            <span class="icon"></span>
+            <div class="val-wrap">
+              <p class="val"><em>--</em>%</p>
+              <p class="name">距离</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="nav-wrap">
+      <div class="nav-inner">
+        <div class="nav-item light">
+          <a href="javascript:;"></a>
+          <p class="text">白光</p>
+        </div>
+        <div class="nav-item color">
+          <a href="javascript:;"></a>
+          <p class="text">彩光</p>
+        </div>
+        <div class="nav-item scene">
+          <a href="javascript:;"></a>
+          <p class="text">情景</p>
+        </div>
+        <div class="nav-item timing">
+          <a href="javascript:;"></a>
+          <p class="text">定时</p>
+        </div>
+      </div>
+    </div>
+    <div class="control">
+      <div class="arrow"></div>
+      <div class="content">
+        <div class="control-item brightness">
+          <span class="val">明暗度</span>
+          <div class="control-range">
+            <div class="ui-range">
+              <span class="progress"></span>
+              <input type="range" min='0' step="1" value="40" max='100'>
+            </div>
+          </div>
+        </div>
+        <div class="control-item saturation">
+          <span class="val">饱和度</span>
+          <div class="control-range">
+            <div class="ui-range">
+              <span class="progress"></span>
+              <input type="range" min='0' step="1" value="50" max='100'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://appapi.heclouds.com/sdk/ojs.min.js?v=1.0"></script>
+  <script src="./js/dest/common.js" ></script>
+  <script src="./js/dest/index.js" ></script>
+</body>
+</html>

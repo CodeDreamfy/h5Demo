@@ -1,0 +1,99 @@
+.index .item-list {
+  margin: 8px auto 0;
+  border-radius: 20px;
+  box-shadow: 0 0 2px 0 #ccc;/*no*/
+  padding: 0 16px;
+  background: #fff;
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  &:after {
+    content:'';
+    display: block; height: 0;
+    clear: both; visibility: hidden;
+    font-size: 0;
+  }
+  .item {
+    height: 80px; padding: 4px 12px;
+    float: left; width: 50%;
+    &:after {
+      content: ''; display: inline-block;
+      vertical-align: middle; height: 100%;
+    }
+    .item-tit {
+      display: inline-block;
+      font-size: 34px;
+      span[class^="icon-"] { color: #0079ff; margin-right: 16px;}
+    }
+    .item-val {
+      float: right;
+      min-width: 100px;
+      text-align: right;
+      span {
+        display: inline-block;
+        font-size: 28px;
+        sup { font-size: 22px;}
+      }
+      .value { margin-right: 6px; height: 62px; line-height: 100%; font-size: 30px;}
+      .unit {
+        padding: 0 14px;
+        height: 62px; line-height: 100%;
+        background: #f0ad4e;
+        color: #fff;
+        border-radius: 20px;
+        &.online { background: #4cd964;}
+        &.offline { background: #ccc; color: #999;}
+      }
+    }
+    .item-tit, .item-val {
+      line-height: 80px; height: 80px;
+      vertical-align: middle;
+    }
+  }
+  &:first-child { border-top: none;}
+  .three-color-lights { display: none;}
+}
+.device { float: none; width: 100%;}
+.label-check {
+  display: inline-block;
+  width: 140px;
+  height: 62px;
+  line-height: 62px;
+  box-shadow: 0 0 3px 0 #ddd inset;/*no*/
+  border-radius: 30px;
+  position: relative;
+  vertical-align: middle;
+  background: #fff;
+  transition: left .6s;
+  &:after {
+    content: 'OFF';
+    position: absolute;
+    width: 60%; height: 100%;
+    text-align: center;
+    color: #ddd; font-size: 28px;
+    right: 0; top: 0;
+    z-index: 1;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: 62px; height: 100%;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px 0 #ccc;/*no*/
+    top: -1px;/*no*/ left: -1px;/*no*/
+    background: #fff;
+    z-index: 2;
+  }
+  &.checked {
+    background: #099bff;
+    box-shadow: 0 0 3px 0 #0272bf;
+    &:before {
+      left: 78px;
+      box-shadow: 1px 1px 2px 0 #0272bf;/*no*/
+    }
+    &:after {
+      content: 'ON';
+      left: 0; right: auto; color: #fff;
+    }
+  }
+}

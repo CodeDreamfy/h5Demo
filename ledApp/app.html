@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>设备详情</title>
+  <script src="js/lib/flexible.js"></script>
+  <link rel="stylesheet" href="./css/lib/normalize.css">
+  <link rel="stylesheet" href="./css/lib/fontello.css">
+  <!--<link rel="stylesheet" href="http://appapi.heclouds.com/sdk/ojs.min.css?v=1.0">-->
+  <link rel="stylesheet" href="./css/main.min.css">
+</head>
+<body>
+  <div class="wrapper index">
+    <div class="item-list device">
+      <div class="item device-name">
+        <div class="item-tit">
+          <span class="icon-device"></span>
+          <span class="name">设备名称</span>
+        </div>
+        <div class="item-val">
+          <i class="unit online">在线</i>
+        </div>
+      </div>
+    </div>
+    <div class="item-list">
+      <div class="item temp">
+        <div class="item-tit">
+          <span class="icon-temperatire"></span>
+          <span class="name">温度</span>
+        </div>
+        <div class="item-val">
+          <span class="value">-</span>
+          <i class="unit"><sup>o</sup>C</i>
+        </div>
+      </div>
+      <div class="item humidity">
+        <div class="item-tit">
+          <span class="icon-humidity"></span>
+          <span class="name">湿度</span>
+        </div>
+        <div class="item-val">
+          <span class="value">-</span>
+          <i class="unit">%</i>
+        </div>
+      </div>
+      <div class="item intensity">
+        <div class="item-tit">
+          <span class="icon-light-intensity"></span>
+          <span class="name">光强</span>
+        </div>
+        <div class="item-val">
+          <span class="value">-</span>
+          <i class="unit">flux</i>
+        </div>
+      </div>
+      <div class="item distance">
+        <div class="item-tit">
+          <span class="icon-location"></span>
+          <span class="name">距离</span>
+        </div>
+        <div class="item-val">
+          <span class="value">-</span>
+          <i class="unit">mm</i>
+        </div>
+      </div>
+    </div>
+    <div class="item-list">
+      <div class="item motor">
+        <div class="item-tit">
+          <span class="icon-motor"></span>
+          <span class="name">电机</span>
+        </div>
+        <div class="item-val">
+          <label for="" class="label-check motor-check" data-flag='false'></label>
+        </div>
+      </div>
+      <div class="item three-color-lights">
+        <div class="item-tit">
+          <span class="icon-three-color-lights"></span>
+          <span class="name">三色灯</span>
+        </div>
+        <div class="item-val">
+          <span class="value">></span>
+        </div>
+      </div>
+    </div>
+    <div class="item-list lcd-wrap">
+      <div class="lcd">
+        <div class="colorpicker-wrapper">
+          <div class="canvas-place">
+            <div class="btn"></div>
+            <div class="startBtn"></div>
+          </div>
+        </div>
+        <div class="form-wrap saturation">
+          <div class="range-item clearfix">
+            <span class="label">饱和度：</span>
+            <div class="range"><i><em>0</em></i></div>
+          </div>
+        </div>
+        <div class="form-wrap brightness">
+          <div class="range-item clearfix">
+            <span class="label">亮度：</span>
+            <div class="range"><i><em>0</em></i></div>
+          </div>
+        </div>
+        <a href="javascript:;" class="submit">确认</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://appapi.heclouds.com/sdk/ojs.min.js?v=1.0"></script>
+  <script src="./js/dest/colorPicker.js" ></script>
+  <script src="./js/dest/common.js" ></script>
+  <script src="./js/dest/main.js" ></script>
+</body>
+</html>

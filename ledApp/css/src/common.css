@@ -1,0 +1,119 @@
+/* reset */
+* { box-sizing:  border-box;}
+html,body {
+  -webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  -webkit-tap-highlight-color: transparent;
+}
+ul,li,ol,h1,h2,h3,p { margin: 0; padding: 0;}
+a { text-decoration: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;}
+ul,ol { list-style: none;}
+em,i { font-style: normal;}
+h1,h2,h3 { font-size: 100%; font-weight: normal;}
+
+/* utils */
+.clearfix { *zoom: 1;}
+.clearfix:after { content:' '; display: block; clear: both; visibility: hidden; height: 0;}
+.hidden { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+/* common */
+.wrapper { width: 100%; height: 100%; margin: 0 auto; padding: 8px 6px 30px; overflow-y: auto; background: #efeff4; position: relative; }
+
+.overlay {
+  width: 100%; height: 100%;
+  position: fixed;
+  top: 0; left: 0; z-index: 100;
+  background: rgba(0,0,0,.5);
+}
+
+
+
+/* ui*/
+
+/* checkbox */
+input.hw-checkbox-toggle {display: none;}
+.hw-checkbox-toggle + label {
+  width: 116px; height: 58px;
+  background: #fafbfa;
+  display: inline-block;
+  padding: 9px;
+  border-radius: 28px;
+  transition: all 0.1s ease-in;
+  position: relative; border: 1px solid #e5e5e5;/*no*/
+  z-index: 100; cursor: pointer;
+}
+.hw-checkbox-toggle + label:after {
+  content: ''; position: absolute; border-radius: 28px; background: rgba(0,0,0,0);
+  top: 0; left: 0; transition: box-shadow .1s ease-in;
+  width: 100%; height: 100%;
+  box-shadow: inset 0 0 0 0 #eee, 0 0 1px rgba(0,0,0,.4);/*no*/
+}
+.hw-checkbox-toggle + label:before {
+  content: '';
+  position: absolute; background: #fff;
+  top: 1px;/*no*/ left: 1px;/*no*/ z-index: 100;
+  width: 58px; height: 100%; border-radius: 50%;
+  transition: all .1s ease-in;
+  box-shadow: 0 3px 1px rgba(0,0,0,.05), 0 0 1px rgba(0,0,0,.3);/*no*/
+}
+
+.hw-checkbox-toggle:active + label:after {
+  box-shadow: inset 0 0 0 30px #eee, 0 0 1px #eee;
+}
+.hw-checkbox-toggle:disabled + label:after {
+  box-shadow: inset 0 0 0 0 #eee, 0 0 1px #eee;
+}
+.hw-checkbox-toggle + label:active {
+ box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+.hw-checkbox-toggle:disabled + label:active {
+  box-shadow: inset 0 0 0 0 #eee, 0 0 1px rgba(0,0,0,.4);
+}
+.hw-checkbox-toggle:checked + label:before {
+  left: 58px; top:0;
+}
+.hw-checkbox-toggle:checked:active + label:before {
+  left: 0;
+}
+.hw-checkbox-toggle:checked + label:after {
+  background: #189e47; box-shadow: 0 0 2px #189e47;/*no*/
+  content: ''; position: absolute;
+}
+
+.ui-range {
+  width: 100%; height: 38px; position: relative;
+  input[type=range] {
+    -webkit-appearance: none !important;
+    background: none; outline: none;
+    position: absolute; z-index: 2;
+    width: 100%; line-height: 0;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none !important; cursor: pointer;
+    width: 18px;/*no*/ height: 18px;/*no*/ border-radius: 50%;
+    background: #fff; box-shadow: 0 0 10px 0 #1e1437;
+    border: none;  transition: all 1s;
+  }
+  input[type=range]:focus { outline: none;}
+  input[type=range]::-webkit-slider-thumb:active {
+    width: 28px;/*no*/ height: 28px;/*no*/ border-radius: 50%;
+  }
+  .progress {
+    width: 0; height: 12px; position: absolute; z-index: 2;
+    background: #fff; border-radius: 8px; top: 50%; margin-top: -6px;
+  }
+  &::after {
+    content: ''; position: absolute; background: #3d3455; z-index: 1;
+    width: 100%; height: 12px; border-radius: 8px; top: 50%; margin-top: -6px;
+  }
+}
