@@ -641,6 +641,10 @@ input.hw-checkbox-toggle {
   background-size: 0.693333rem 0.693333rem;
 }
 
+.control {
+  background: #180d35;
+}
+
 .control .arrow {
   width: 100%;
   height: 0.933333rem;
@@ -657,7 +661,6 @@ input.hw-checkbox-toggle {
 
 .control .content {
   padding: 0.746667rem 0.506667rem;
-  background: #180d35;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -668,6 +671,7 @@ input.hw-checkbox-toggle {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+  position: relative;
 }
 
 .control .content .control-item {
@@ -727,4 +731,158 @@ input.hw-checkbox-toggle {
 .control.show {
   -webkit-transform: translate3d(0,-100%,0);
           transform: translate3d(0,-100%,0);
+}
+
+.control.show-scene {
+  -webkit-transform: translate3d(0,-60%,0);
+          transform: translate3d(0,-60%,0);
+}
+
+.control .scene-wrap {
+  padding: 1.066667rem 0 0.666667rem;
+  display: none;
+}
+
+.control .scene-wrap .scene-inner-wrap {
+  width: 100%;
+  height: 1.546667rem;
+  overflow: hidden;
+  position: relative;
+  padding: 0 0.506667rem;
+}
+
+.control .scene-wrap .scene-inner-wrap .prev,
+.control .scene-wrap .scene-inner-wrap .next {
+  width: 0.506667rem;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+}
+
+.control .scene-wrap .scene-inner-wrap .prev {
+  left: 0;
+  display: none;
+}
+
+.control .scene-wrap .scene-inner-wrap .prev:after {
+  content: '';
+  position: absolute;
+  border-width: 0.173333rem;
+  border-style: solid;
+  border-color: transparent;
+  border-right-color: #5d3dae;
+  top: 50%;
+  left: 50%;
+  margin: -0.173333rem 0 0 -0.173333rem;
+}
+
+.control .scene-wrap .scene-inner-wrap .next {
+  right: 0;
+}
+
+.control .scene-wrap .scene-inner-wrap .next:after {
+  content: '';
+  position: absolute;
+  border-width: 0.173333rem;
+  border-style: solid;
+  border-color: transparent;
+  border-left-color: #5d3dae;
+  top: 50%;
+  left: 50%;
+  margin: -0.173333rem 0 0 -0.173333rem;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute {
+  width: 100%;
+  height: 1.546667rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list {
+  height: 1.546667rem;
+  position: absolute;
+  left: 0;
+  transitions: left 1.8s ease-out;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item {
+  float: left;
+  width: 1.786667rem;
+  height: 1.546667rem;
+  padding-top: 0.013333rem;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item .face {
+  margin-top: 0.04rem;
+  width: 0.826667rem;
+  height: 0.826667rem;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 50%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item .face i {
+  background: rgba(0,0,0,.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item .scene-val {
+  font-size: 0.4rem;
+  height: 0.666667rem;
+  line-height: 0.666667rem;
+  text-align: center;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.night .face {
+  background: url(../img/index/scene/night.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.read .face {
+  background: url(../img/index/scene/read.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.together .face {
+  background: url(../img/index/scene/together.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.leisure .face {
+  background: url(../img/index/scene/leisure.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.softlight .face {
+  background: url(../img/index/scene/softlight.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.colorful .face {
+  background: url(../img/index/scene/colorful.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.colorfulcool .face {
+  background: url(../img/index/scene/colorfulcool.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.gorgeous .face {
+  background: url(../img/index/scene/gorgeous.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.active .face {
+  box-shadow: 0 0 0.04rem 0 #fff;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.active .face i {
+  display: none;
 }

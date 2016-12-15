@@ -229,6 +229,7 @@
 }
 
 .control {
+	background: #180d35;
   .arrow {
     width: 100%; height: 70px;
     transition: all .8s;
@@ -240,8 +241,8 @@
     }
   }
   .content {
-    padding: 56px 38px; background: #180d35;
-    display: flex; flex-direction: column; align-items: stretch;
+    padding: 56px 38px;
+    display: flex; flex-direction: column; align-items: stretch; position: relative;
     .control-item {
       display: flex;
       flex-direction: row;
@@ -272,7 +273,121 @@
   &.show {
     transform: translate3d(0,-100%,0);
   }
+	&.show-scene {
+		transform: translate3d(0,-60%,0);
+	}
 }
 
-
+.control {
+	.scene-wrap {
+		padding: 80px 0 50px; display: none;
+		.scene-inner-wrap {
+			width: 100%; height: 116px; overflow: hidden;
+			position: relative; padding: 0 38px;
+			.prev,.next{
+				width: 38px; height: 100%; position: absolute;
+				z-index: 2; top: 0;
+			}
+			.prev {
+				left: 0; display: none;
+				&:after {
+					content:''; position: absolute;
+					border-width: 13px;
+					border-style: solid;
+					border-color: transparent;
+					border-right-color: #5d3dae;
+					top: 50%; left: 50%; margin: -13px 0 0 -13px;
+				}
+			}
+			.next {
+				right: 0;
+				&:after {
+					content:''; position: absolute;
+					border-width: 13px;
+					border-style: solid;
+					border-color: transparent;
+					border-left-color: #5d3dae;
+					top: 50%; left: 50%; margin: -13px 0 0 -13px;
+				}
+			}
+			.scene-compute {
+				width: 100%; height: 116px; overflow: hidden; position: relative;
+			}
+			.scene-compute .scene-list {
+				height: 116px; position: absolute; left: 0; 
+				transitions: left 1.8s ease-out;
+				.scene-item {
+					float: left; width: 134px; height: 116px; padding-top: 1px;
+					.face {
+						margin-top: 3px;
+						width: 62px; height: 62px; display: block; margin: 0 auto;
+						position: relative; border-radius: 50%;
+						i {
+							background: rgba(0,0,0,.5); position: absolute;
+							width: 100%; height: 100%; border-radius: 50%;
+						}
+					}
+					.scene-val {
+						font-size: 30px;
+						height: 50px; line-height: 50px; text-align: center;
+					}
+					&.night {
+						.face {
+							background: url(../img/index/scene/night.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.read {
+						.face {
+							background: url(../img/index/scene/read.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.together {
+						.face {
+							background: url(../img/index/scene/together.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.leisure {
+						.face {
+							background: url(../img/index/scene/leisure.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.softlight {
+						.face {
+							background: url(../img/index/scene/softlight.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.colorful {
+						.face {
+							background: url(../img/index/scene/colorful.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.colorfulcool {
+						.face {
+							background: url(../img/index/scene/colorfulcool.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.gorgeous {
+						.face {
+							background: url(../img/index/scene/gorgeous.png) no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+					&.active {
+						.face {
+							box-shadow: 0 0 3px 0 #fff;
+							i { display: none;}
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
