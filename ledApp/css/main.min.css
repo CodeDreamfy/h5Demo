@@ -371,33 +371,44 @@ input.hw-checkbox-toggle {
   content: '在线';
 }
 
-.led-status-wrap em.online.offine {
+.led-status-wrap em.online.offline {
   background: #999;
   color: #fff;
 }
 
-.led-status-wrap em.online.offine:after {
+.led-status-wrap em.online.offline:after {
   content: '离线';
 }
 
 .conent-main .conetent {
   height: 100%;
   position: relative;
-  background: #10042e;
 }
 
-.conent-main .conetent .ledwrap {
+.conent-main .conetent .c-wrap {
+  width: 6.533333rem;
+  height: 6.533333rem;
+  position: absolute;
+  z-index: 2;
+  border-radius: 50%;
+  top: 16%;
+  left: 50%;
+  margin-left: -3.266667rem;
+}
+
+.conent-main .conetent .c-wrap .ledwrap {
   width: 2.453333rem;
   height: 3.2rem;
+  border-radius: 100%;
   position: absolute;
-  top: 24%;
+  top: 50%;
   left: 50%;
   z-index: 3;
-  background: #10042e;
   margin-left: -1.226667rem;
+  margin-top: -1.6rem;
 }
 
-.conent-main .conetent .ledwrap .r1 {
+.conent-main .conetent .c-wrap .ledwrap .r1 {
   width: 2.453333rem;
   height: 2.453333rem;
   border-radius: 50%;
@@ -407,7 +418,7 @@ input.hw-checkbox-toggle {
   transition: all .8s;
 }
 
-.conent-main .conetent .ledwrap .r2 {
+.conent-main .conetent .c-wrap .ledwrap .r2 {
   width: 1.066667rem;
   height: 0.333333rem;
   background: #10042e;
@@ -419,7 +430,7 @@ input.hw-checkbox-toggle {
   transition: all .8s;
 }
 
-.conent-main .conetent .ledwrap .r3 {
+.conent-main .conetent .c-wrap .ledwrap .r3 {
   width: 1.066667rem;
   height: 0.413333rem;
   border-radius: 0 0 0.106667rem 0.106667rem;
@@ -442,14 +453,14 @@ input.hw-checkbox-toggle {
 
 .conent-main .sensor-wrapper {
   position: absolute;
-  bottom: 0.4rem;
+  bottom: 2.133333rem;
   width: 100%;
   height: 3.493333rem;
   -webkit-transform: translate3d(0,0,0);
           transform: translate3d(0,0,0);
   padding: 0 0.373333rem;
-  -webkit-transition: all 2s;
-  transition: all 2s;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
 .conent-main .sensor-wrapper .sensor-item {
@@ -748,24 +759,32 @@ input.hw-checkbox-toggle {
   height: 1.546667rem;
   overflow: hidden;
   position: relative;
-  padding: 0 0.506667rem;
 }
 
-.control .scene-wrap .scene-inner-wrap .prev,
-.control .scene-wrap .scene-inner-wrap .next {
+.control .scene-wrap .scene-inner-wrap .scene-compute {
+  width: 100%;
+  height: 1.546667rem;
+  padding: 0 0.506667rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-prev,
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-next {
   width: 0.506667rem;
   height: 100%;
+  background: none;
   position: absolute;
-  z-index: 2;
   top: 0;
+  margin-top: 0;
+  background: #180d35;
 }
 
-.control .scene-wrap .scene-inner-wrap .prev {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-prev {
   left: 0;
-  display: none;
 }
 
-.control .scene-wrap .scene-inner-wrap .prev:after {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-prev:after {
   content: '';
   position: absolute;
   border-width: 0.173333rem;
@@ -777,11 +796,11 @@ input.hw-checkbox-toggle {
   margin: -0.173333rem 0 0 -0.173333rem;
 }
 
-.control .scene-wrap .scene-inner-wrap .next {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-next {
   right: 0;
 }
 
-.control .scene-wrap .scene-inner-wrap .next:after {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-next:after {
   content: '';
   position: absolute;
   border-width: 0.173333rem;
@@ -793,38 +812,30 @@ input.hw-checkbox-toggle {
   margin: -0.173333rem 0 0 -0.173333rem;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-prev.swiper-button-disabled:after,
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-button-next.swiper-button-disabled:after {
+  display: none;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-wrapper {
   width: 100%;
-  height: 1.546667rem;
-  overflow: hidden;
+}
+
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide {
   position: relative;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list {
-  height: 1.546667rem;
-  position: absolute;
-  left: 0;
-  transitions: left 1.8s ease-out;
-}
-
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item {
-  float: left;
-  width: 1.786667rem;
-  height: 1.546667rem;
-  padding-top: 0.013333rem;
-}
-
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item .face {
-  margin-top: 0.04rem;
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide .face {
   width: 0.826667rem;
   height: 0.826667rem;
   display: block;
   margin: 0 auto;
   position: relative;
   border-radius: 50%;
+  margin-top: 0.04rem;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item .face i {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide .face i {
   background: rgba(0,0,0,.5);
   position: absolute;
   width: 100%;
@@ -832,57 +843,70 @@ input.hw-checkbox-toggle {
   border-radius: 50%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item .scene-val {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide .scene-val {
   font-size: 0.4rem;
   height: 0.666667rem;
   line-height: 0.666667rem;
   text-align: center;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.night .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.night .face {
   background: url(../img/index/scene/night.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.read .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.read .face {
   background: url(../img/index/scene/read.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.together .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.together .face {
   background: url(../img/index/scene/together.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.leisure .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.leisure .face {
   background: url(../img/index/scene/leisure.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.softlight .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.softlight .face {
   background: url(../img/index/scene/softlight.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.colorful .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.colorful .face {
   background: url(../img/index/scene/colorful.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.colorfulcool .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.colorfulcool .face {
   background: url(../img/index/scene/colorfulcool.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.gorgeous .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.gorgeous .face {
   background: url(../img/index/scene/gorgeous.png) no-repeat;
   background-size: 100% 100%;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.active .face {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.active .face {
   box-shadow: 0 0 0.04rem 0 #fff;
 }
 
-.control .scene-wrap .scene-inner-wrap .scene-compute .scene-list .scene-item.active .face i {
+.control .scene-wrap .scene-inner-wrap .scene-compute .swiper-slide.active .face i {
   display: none;
+}
+
+.conent-main .conetent .c-wrap .led-canvas {
+  width: 6.533333rem;
+  height: 6.533333rem;
+  position: relative;
+  z-index: 2;
+  border-radius: 100%;
+}
+
+.conent-main .conetent .c-wrap .led-canvas .c-place {
+  width: 5.266667rem;
+  height: 0;
 }

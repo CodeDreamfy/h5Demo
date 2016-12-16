@@ -2,116 +2,162 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>设备详情</title>
+  <title>灯控详情页</title>
   <script src="js/lib/flexible.js"></script>
   <link rel="stylesheet" href="./css/lib/normalize.css">
-  <link rel="stylesheet" href="./css/lib/fontello.css">
-  <!--<link rel="stylesheet" href="http://appapi.heclouds.com/sdk/ojs.min.css?v=1.0">-->
+  <link rel="stylesheet" href="http://appapi.heclouds.com/sdk/ojs.min.css?v=1.0">
+  <link rel="stylesheet" href="./js/lib/swiper-3.3.1.min.css">
   <link rel="stylesheet" href="./css/main.min.css">
 </head>
 <body>
-  <div class="wrapper index">
-    <div class="item-list device">
-      <div class="item device-name">
-        <div class="item-tit">
-          <span class="icon-device"></span>
-          <span class="name">设备名称</span>
+  <div class="led-wrapper">
+    <div class="header">
+      <div class="checkbox-wrap dianji">
+        <span class="label-val">电机</span>
+        <input type="checkbox" id="label-led1" class="hw-checkbox-toggle"><label for="label-led1"></label>
+      </div>
+      <div class="led-status-wrap device-status">
+        <span class="label-val">设备状态</span><em class="online"></em>
+      </div>
+    </div>
+    <div class="conent-main">
+      <div class="conetent">
+        <div class="c-wrap">
+          <div class="ledwrap">
+            <div class="r1"></div>
+            <div class="r2"></div>
+            <div class="r3"></div>
+          </div>
+          <div class="led-canvas">
+            <div class="c-place"></div>
+          </div>
         </div>
-        <div class="item-val">
-          <i class="unit online">在线</i>
+        
+      </div>
+      <ul class="sensor-wrapper">
+        <li class="sensor-item temp">
+          <span class="icon"></span>
+          <div class="val-wrap">
+            <p class="val"><em>--</em><sup>o</sup>C</p>
+            <p class="name">温度</p>
+          </div>
+        </li>
+        <li class="sensor-item humidity">
+          <span class="icon"></span>
+          <div class="val-wrap">
+            <p class="val"><em>--</em>%</p>
+            <p class="name">湿度</p>
+          </div>
+        </li>
+        <li class="sensor-item intensity">
+          <span class="icon"></span>
+          <div class="val-wrap">
+            <p class="val"><em>--</em>flux</p>
+            <p class="name">光强</p>
+          </div>
+        </li>
+        <li class="sensor-item distance">
+          <span class="icon"></span>
+          <div class="val-wrap">
+            <p class="val"><em>--</em>%</p>
+            <p class="name">距离</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-wrap">
+      <div class="nav-inner">
+        <div class="nav-item light">
+          <a href="javascript:;"></a>
+          <p class="text">白光</p>
+        </div>
+        <div class="nav-item color">
+          <a href="javascript:;"></a>
+          <p class="text">彩光</p>
+        </div>
+        <div class="nav-item scene">
+          <a href="javascript:;"></a>
+          <p class="text">情景</p>
+        </div>
+        <div class="nav-item timing">
+          <a href="javascript:;"></a>
+          <p class="text">定时</p>
         </div>
       </div>
     </div>
-    <div class="item-list">
-      <div class="item temp">
-        <div class="item-tit">
-          <span class="icon-temperatire"></span>
-          <span class="name">温度</span>
-        </div>
-        <div class="item-val">
-          <span class="value">-</span>
-          <i class="unit"><sup>o</sup>C</i>
-        </div>
-      </div>
-      <div class="item humidity">
-        <div class="item-tit">
-          <span class="icon-humidity"></span>
-          <span class="name">湿度</span>
-        </div>
-        <div class="item-val">
-          <span class="value">-</span>
-          <i class="unit">%</i>
-        </div>
-      </div>
-      <div class="item intensity">
-        <div class="item-tit">
-          <span class="icon-light-intensity"></span>
-          <span class="name">光强</span>
-        </div>
-        <div class="item-val">
-          <span class="value">-</span>
-          <i class="unit">flux</i>
-        </div>
-      </div>
-      <div class="item distance">
-        <div class="item-tit">
-          <span class="icon-location"></span>
-          <span class="name">距离</span>
-        </div>
-        <div class="item-val">
-          <span class="value">-</span>
-          <i class="unit">mm</i>
-        </div>
-      </div>
-    </div>
-    <div class="item-list">
-      <div class="item motor">
-        <div class="item-tit">
-          <span class="icon-motor"></span>
-          <span class="name">电机</span>
-        </div>
-        <div class="item-val">
-          <label for="" class="label-check motor-check" data-flag='false'></label>
-        </div>
-      </div>
-      <div class="item three-color-lights">
-        <div class="item-tit">
-          <span class="icon-three-color-lights"></span>
-          <span class="name">三色灯</span>
-        </div>
-        <div class="item-val">
-          <span class="value">></span>
-        </div>
-      </div>
-    </div>
-    <div class="item-list lcd-wrap">
-      <div class="lcd">
-        <div class="colorpicker-wrapper">
-          <div class="canvas-place">
-            <div class="btn"></div>
-            <div class="startBtn"></div>
+    <div class="control">
+      <div class="arrow"></div>
+			<div class="scene-wrap">
+				<div class="scene-inner-wrap">
+					<div class="scene-compute swiper-container">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-wrapper">
+              <div class="swiper-slide night" data-hsl="40">
+                <span class="face"><i></i></span>
+								<p class="scene-val">晚间</p>
+              </div>
+              <div class="swiper-slide read" data-hsl="80">
+                <span class="face"><i></i></span>
+								<p class="scene-val">阅读</p>
+              </div>
+              <div class="swiper-slide together" data-hsl="120">
+                <span class="face"><i></i></span>
+								<p class="scene-val">聚会</p>
+              </div>
+              <div class="swiper-slide leisure" data-hsl="160">
+                <span class="face"><i></i></span>
+								<p class="scene-val">休闲</p>
+              </div>
+              <div class="swiper-slide softlight" data-hsl="200">
+                <span class="face"><i></i></span>
+								<p class="scene-val">柔光</p>
+              </div>
+              <div class="swiper-slide colorful" data-hsl="240">
+                <span class="face"><i></i></span>
+								<p class="scene-val">缤纷</p>
+              </div>
+              <div class="swiper-slide colorfulcool" data-hsl="280">
+                <span class="face"><i></i></span>
+								<p class="scene-val">炫彩</p>
+              </div>
+              <div class="swiper-slide gorgeous" data-hsl="320">
+                <span class="face"><i></i></span>
+								<p class="scene-val">斑斓</p>
+              </div>
+            </div>
+					</div>
+					<span class="next"></span>
+				</div>
+			</div>
+      <div class="content">
+        <div class="control-item brightness">
+          <span class="val">明暗度</span>
+          <div class="control-range">
+            <div class="ui-range">
+              <span class="progress"></span>
+              <input type="range" class="mingdu" min='0' step="1" value="40" max='100'>
+            </div>
           </div>
         </div>
-        <div class="form-wrap saturation">
-          <div class="range-item clearfix">
-            <span class="label">饱和度：</span>
-            <div class="range"><i><em>0</em></i></div>
+        <div class="control-item saturation">
+          <span class="val">饱和度</span>
+          <div class="control-range">
+            <div class="ui-range">
+              <span class="progress"></span>
+              <input type="range" class="baohe" min='0' step="1" value="50" max='100'>
+            </div>
           </div>
         </div>
-        <div class="form-wrap brightness">
-          <div class="range-item clearfix">
-            <span class="label">亮度：</span>
-            <div class="range"><i><em>0</em></i></div>
-          </div>
-        </div>
-        <a href="javascript:;" class="submit">确认</a>
       </div>
     </div>
   </div>
 
+  <script src="./js/lib/sdk.min.js" ></script>
   <script src="http://appapi.heclouds.com/sdk/ojs.min.js?v=1.0"></script>
-  <script src="./js/dest/colorPicker.js" ></script>
-  <script src="./js/dest/common.js" ></script>
-  <script src="./js/dest/main.js" ></script>
+  <script src="./js/lib/swiper-3.3.1.min.js" ></script>
+  <script src="./js/dest/index.js" ></script>
+  <script src="./js/dest/canvasPicker.js" ></script>
+  
 </body>
 </html>

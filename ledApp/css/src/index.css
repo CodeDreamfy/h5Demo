@@ -60,7 +60,7 @@
     border-radius: 12px;
     position: relative; top: -2px;
     &:after { content:'在线'}
-    &.offine{
+    &.offline {
       background: #999; color: #fff;
       &:after { content:'离线'}
     }
@@ -68,31 +68,33 @@
 }
 
 .conent-main .conetent {
-  height: 100%;
-  position: relative;
-  background: #10042e;
-  .ledwrap {
-    width: 184px; height: 240px;
-    position: absolute; top: 24%; left: 50%; z-index:3;
-    background: #10042e;
-    margin-left:-92px;
-    .r1 {
-      width: 184px; height: 184px;
-      border-radius: 50%; border: 3px solid #fff;/*no*/
-      background: #10042e; transition: all .8s;
-    }
-    .r2 {
-      width: 80px; height: 25px;
-      background: #10042e;
-      border-width: 3px;
-      border: 3px solid #fff;/*no*/ border-top: none;
-      margin: -13px auto 0;  transition: all .8s;
-    }
-    .r3 {
-      width: 80px; height: 31px;
-      border-radius: 0 0 8px 8px;
-      border: 3px solid #fff;/*no*/
-      margin: 11px auto 0;  transition: all .8s;
+  height: 100%; position: relative;
+  .c-wrap {
+    width: 490px; height: 490px; position: absolute; z-index: 2;
+    border-radius: 50%;
+    top: 16%; left: 50%; margin-left: -245px;
+    .ledwrap {
+      width: 184px; height: 240px; border-radius: 100%;
+      position: absolute; top: 50%; left: 50%; z-index:3;
+      margin-left:-92px; margin-top: -120px;
+      .r1 {
+        width: 184px; height: 184px;
+        border-radius: 50%; border: 3px solid #fff;/*no*/
+        background: #10042e; transition: all .8s;
+      }
+      .r2 {
+        width: 80px; height: 25px;
+        background: #10042e;
+        border-width: 3px;
+        border: 3px solid #fff;/*no*/ border-top: none;
+        margin: -13px auto 0;  transition: all .8s;
+      }
+      .r3 {
+        width: 80px; height: 31px;
+        border-radius: 0 0 8px 8px;
+        border: 3px solid #fff;/*no*/
+        margin: 11px auto 0;  transition: all .8s;
+      }
     }
   }
   .ledwrap.active {
@@ -101,9 +103,9 @@
   }
 }
 .conent-main .sensor-wrapper {
-  position: absolute; bottom: 30px;
+  position: absolute; bottom: 160px;
   width: 100%; height: 262px; transform: translate3d(0,0,0);
-  padding: 0 28px; transition: all 2s;
+  padding: 0 28px; transition: all 1s;
   .sensor-item {
     float: left; width: 50%; height: 101px;
     display: flex;
@@ -283,45 +285,45 @@
 		padding: 80px 0 50px; display: none;
 		.scene-inner-wrap {
 			width: 100%; height: 116px; overflow: hidden;
-			position: relative; padding: 0 38px;
-			.prev,.next{
-				width: 38px; height: 100%; position: absolute;
-				z-index: 2; top: 0;
-			}
-			.prev {
-				left: 0; display: none;
-				&:after {
-					content:''; position: absolute;
-					border-width: 13px;
-					border-style: solid;
-					border-color: transparent;
-					border-right-color: #5d3dae;
-					top: 50%; left: 50%; margin: -13px 0 0 -13px;
-				}
-			}
-			.next {
-				right: 0;
-				&:after {
-					content:''; position: absolute;
-					border-width: 13px;
-					border-style: solid;
-					border-color: transparent;
-					border-left-color: #5d3dae;
-					top: 50%; left: 50%; margin: -13px 0 0 -13px;
-				}
-			}
+			position: relative;
 			.scene-compute {
-				width: 100%; height: 116px; overflow: hidden; position: relative;
-			}
-			.scene-compute .scene-list {
-				height: 116px; position: absolute; left: 0; 
-				transitions: left 1.8s ease-out;
-				.scene-item {
-					float: left; width: 134px; height: 116px; padding-top: 1px;
+				width: 100%; height: 116px; padding: 0 38px; overflow: hidden; position: relative;
+        .swiper-button-prev, .swiper-button-next {
+          width: 38px; height: 100%; background: none;
+          position: absolute; top: 0; margin-top:0; background: #180d35;
+        }
+        .swiper-button-prev {
+          left: 0;
+          &:after {
+            content:''; position: absolute;
+            border-width: 13px;
+            border-style: solid;
+            border-color: transparent;
+            border-right-color: #5d3dae;
+            top: 50%; left: 50%; margin: -13px 0 0 -13px;
+          }
+        }
+        .swiper-button-next {
+          right: 0;
+          &:after {
+            content:''; position: absolute;
+            border-width: 13px;
+            border-style: solid;
+            border-color: transparent;
+            border-left-color: #5d3dae;
+            top: 50%; left: 50%; margin: -13px 0 0 -13px;
+          }
+        }
+        .swiper-button-prev.swiper-button-disabled,
+        .swiper-button-next.swiper-button-disabled  {
+          &:after { display: none}
+         }
+        .swiper-wrapper { width: 100%;}
+				.swiper-slide {
+					 position: relative;
 					.face {
-						margin-top: 3px;
 						width: 62px; height: 62px; display: block; margin: 0 auto;
-						position: relative; border-radius: 50%;
+						position: relative; border-radius: 50%; margin-top: 3px;
 						i {
 							background: rgba(0,0,0,.5); position: absolute;
 							width: 100%; height: 100%; border-radius: 50%;
@@ -391,3 +393,10 @@
 	}
 }
 
+.conent-main .conetent .c-wrap .led-canvas {
+  width: 490px; height: 490px; position: relative; z-index: 2;
+  border-radius: 100%; 
+  .c-place { 
+    width: 395px; height: 0;
+  }
+}
