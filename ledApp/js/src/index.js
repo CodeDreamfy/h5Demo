@@ -1,88 +1,237 @@
-$(function(){
-  uiRange.init()
-  let shadowVal = 10;
-	let itemW, $sceneList;
+let swiper,COLOR="#fff",Light=50,ColorPick, swIndex;
 
+
+
+  //app ready
+OJS.bindAppReady(function(){
+  notNetwork();
+  OJS.bindReady(function(){
+    bindEvent();
+    var initData = OJS.device.getSensorData();
+    if(OJS.device.onlineStatus == 1){
+			$('.device-status em').removeClass('offline').addClass('online');
+    }else {
+      $('.device-status em').removeClass('online').addClass('offline');
+    } 
+    OJS.device.bindPushData({
+        'deviceStatusChange': function(data){
+          if(OJS.device.onlineStatus == 1){
+						$('.device-status em').removeClass('offline').addClass('online');
+            setScene(data);
+          }else {
+						$('.device-status em').removeClass('online').addClass('offline');
+            OJS.app.toast("设备不在线，无法更新数据！");
+          }
+        }
+    })
+  })
+})
+//send
+function send(o){
+  let ops = {};
+  let defaults = {
+    'hues': null,
+    'saturation': null,
+    'brightness': null,
+    'DcMotor': null
+  };
+  ops = $.extend({}, defaults, o);
+	if(OJS.device.onlineStatus == 1){
+		let result = OJS.device.sendNotify(ops, function(){
+			console.log("xiafa")
+			OJS.app.toast('命令已经下发');
+		}, function(){
+			console.log("shoudao")
+			OJS.app.toast('设备已经收到命令！');
+		});
+		// alert(result)
+		if(!result){
+			OJS.app.toast('命令发送失败，无法连接到服务器');
+		}
+	}else {
+		OJS.app.toast('命令发送失败，设备不在线');
+	}
+  
+}
+
+  //无网络判断
+function notNetwork(){
+  setInterval(function(){
+    OJS.app.hasNetWork(function(data){
+      if(data){
+        OJS.ui.hideOfflineMask();
+        // OJS.app.toast(data+'有网络');
+      }else {
+        OJS.ui.showOfflineMask();
+        // OJS.app.toast(data+'无网络');
+      }
+    })
+  }, 5000)
+}
+
+//set index data
+function setScene(data){
+  let $sensorWrapper = $('.sensor-wrapper');
+  $sensorWrapper.find('.temp .val em').text(data.temperature);
+  $sensorWrapper.find('.humidity .val em').text(data.humidity);
+  $sensorWrapper.find('.intensity .val em').text(data.LightSensor);
+  $sensorWrapper.find('.distance .val em').text(data.infrared);
+
+  //电机开关
+  if(data.DcMotor){
+    if(!$('[for="label-led1"]').prev().prop('checked')){
+      $('[for="label-led1"]').click()
+    }
+  }else {
+    if($('[for="label-led1"]').prev().prop('checked')){
+      $('[for="label-led1"]').click()
+    }
+  }
+  
+}
+
+
+function bindEvent(){
+  $('.led-wrapper').on('touchstart', '.dianji', function(e){
+    let flag;
+    if($('[for="label-led1"]').prev().prop('checked')){
+      flag = false;
+    }else {
+      flag = true;
+    }
+    send({'DcMotor':{boolean : flag}})
+  })
 
   $('.led-wrapper').on('touchstart', '.conent-main .ledwrap', function(e){
-		let flag = $(this).data('flag');
-		if(!flag){
-			setLedShadow(shadowVal);
-			$(this).data('flag', true);
-		}else {
-			setLedShadow(shadowVal,'#10042e');
-			$(this).data('flag', false);
-		}
-		console.log($(this).data('flag'))
-    $('.nav-wrap').toggleClass('active');
+    let flag = $(this).data('flag');
+    if(!flag){
+      setLight(50,'#fff','#fff');
+      $(this).data('flag', true);
+      send({
+				'hues':{float: 0},
+				'brightness':{float: 50},
+				'saturation':{float: 0}
+			});
+      $('.nav-wrap').addClass('active');
+    }else {
+      setLight(0,'#10042e','#10042e');
+      $(this).data('flag', false);
+      $('.control').removeClass('show-scene show');
+      $('.nav-inner .nav-item').removeClass('active');
+      $('.led-canvas').hide();
+      // console.log("off")
+      send({
+				'hues':{float: 0},
+				'brightness':{float: 0},
+				'saturation':{float: 0}
+			});
+      $('.nav-wrap').removeClass('active');
+    }
+    
     $('.conent-main .sensor-wrapper').toggleClass('hide');
     e.preventDefault();
   });
 
   $('.led-wrapper').on('touchstart', '.nav-wrap .nav-inner .nav-item', function(e){
     e.preventDefault();
-		if($(this).index() == 3) return false;
-		if($(this).index() == 2){
-			$('.control .scene-wrap').show();
-			$('.control').removeClass('show').addClass('show-scene');
-			if(!itemW) {
-				itemW = $('.control .scene-compute .scene-item').width();
-				$sceneList = $('.control .scene-wrap .scene-list');
-			}
-		}else {
-			$('.control .scene-wrap').hide();
-			$('.control .content').removeClass('hide');
-		};
-
+    e.stopPropagation();
+    let oData = OJS.device.getSensorData();
+    let index = $(this).index();
+    $('.mingdu').val(50).prev().css('width','50%');
+    $('.baohe').val(50).prev().css('width','50%');
+    if( index == 3) return false;
+    if( index == 0) {
+      send({
+				'hues':{float: 0},
+				'brightness':{float: 50},
+				'saturation':{float: 0}
+			});
+      setLight(50,'#fff','#fff');
+    }
+    if(index == 1){
+      $('.led-canvas').show();
+      if(!ColorPick) ColorPick = $('.led-canvas').ColorPicker();
+      //console.log($('.led-canvas').data('colorHsl'))
+      setLight(50,$('.led-canvas').data('colorHsl'),'#fff');
+    }else {
+      $('.led-canvas').hide();
+    }
+    if(index == 2){
+      $('.control .scene-wrap').show();
+      $('.control').removeClass('show').addClass('show-scene');
+      setLight(50,'#fff','#fff');
+      if(!swiper){
+        swiper =  new Swiper ('.swiper-container', {
+          slidesPerView: 5,
+          setWrapperSize: true,
+          prevButton:'.swiper-button-prev',
+          nextButton:'.swiper-button-next',
+          onTap: function(sw){
+            console.log(sw.clickedIndex)
+            if($(sw.clickedSlide).hasClass('active')){
+              $(sw.clickedSlide).removeClass('active');
+              $('.control').addClass("show-scene");
+              send({
+								'hues':{float: 0},
+								'brightness':{float: 50},
+								'saturation':{float: 0}
+							});
+            }else {
+              $('.swiper-wrapper .swiper-slide').eq(sw.clickedIndex).addClass('active').siblings().removeClass('active');
+              swIndex = $('.swiper-wrapper .swiper-slide').eq(sw.clickedIndex);
+              $('.control').removeClass("show-scene");
+              send({
+                'saturation': {float: parseInt($('.baohe').val())},
+                'brightness': {float: parseInt($('.mingdu').val())},
+                'hues': {float: parseInt(swIndex.data('hsl'))}
+              })
+              //console.log(swIndex.data('hsl'), $('.mingdu').val(), $('.baohe').val())
+            }
+            $('.mingdu').val(50).prev().css('width','50%');
+            $('.baohe').val(50).prev().css('width','50%');
+          }
+        })
+      }
+    }else {
+      $('.control .scene-wrap').hide();
+      $('.control .content').removeClass('hide');
+    };
     $(this).addClass('active').siblings().removeClass('active');
     $('.control').addClass('show');
+    $('.nav-wrap').removeClass('active');
   })
 
   $('.led-wrapper').on('touchstart', '.control .arrow', function(e){
+    $('.control').removeClass('show');
+    if( $('.control').hasClass('show-scene')) $('.control').removeClass("show-scene");
+    $('.nav-wrap').addClass('active');
     e.preventDefault();
-    $('.control').toggleClass('show');
   });
 
-	$('.led-wrapper').on('touchstart', '.control .scene-wrap .scene-item', function(e){
-		$(this).addClass('active').siblings().removeClass('active');
-		$('.control').removeClass("show-scene");
-		e.preventDefault();
-	})
-	$('.led-wrapper').on('touchstart', '.control .scene-wrap .prev', function(e){
-		let l = $sceneList.position().left;
-		console.log(Math.abs(l))
-		if(Math.abs(l) <= itemW*3){
-			let c = l+itemW;
-			$sceneList.css('left',c);
-			console.log(Math.abs($sceneList.position().left))
-			$(this).siblings('.next').show();
-		}
-		if($sceneList.position().left >= 0) $(this).hide();
-	})
-	$('.led-wrapper').on('touchstart', '.control .scene-wrap .next', function(e){
-		let l = $sceneList.position().left;
-		if(Math.abs(l) < itemW*3){
-			let c = l-itemW;
-			$sceneList.css('left',c);
-			$(this).siblings('.prev').show();
-		}
-		if(Math.abs($sceneList.position().left) >= itemW*3)  $(this).hide();
+  $('.led-wrapper').on('touchend', '.control .scene-wrap .scene-item', function(e){
+    e.stopPropagation();
+    //console.log(e.target.className)
+    $(this).addClass('active').siblings().removeClass('active');
+    $('.control').removeClass("show-scene");
+    e.preventDefault();
+    return false;
+  });
+}
+  
+  
 
-	})
-})
-
-function setLedShadow(val,color){
+function setLight(val,color,bg){
   let $round = $('.conent-main .ledwrap');
-  let defaultColor = !!color ? color : '#fff';
-  let opacity = val/100;
+  if(val==0) bg='#10042e'
   $round.find('.r1').css({
-    'box-shadow': '0 0 '+ val*0.55 + 'px 0 '+ defaultColor,
-    'background': defaultColor
+    'box-shadow': '0 0 '+ val*0.75 + 'px 0 '+ color,
+    'background': bg
   })
   $('.r2,.r3', $round).css({
-    'box-shadow': '0 0 '+ val*0.6 + 'px 0 '+ defaultColor,
-    'background': defaultColor
+    'box-shadow': '0 0 '+ val*0.6 + 'px 0 '+ color,
+    'background': bg
   })
+  
 }
 
 
@@ -97,13 +246,49 @@ var uiRange = {
       $(elem).find('.progress').css({
         width: val+'%'
       });
-      $input.on('input change', function(){
+      $input.on('input change', function(e){
+        e.preventDefault();
+        e.stopPropagation();
         let n = $(this).val();
         $(this).siblings('.progress').css({
           width: n+'%'
         })
-        setLedShadow(n)
+        
+        let index = $('.nav-inner').children('.active').index();
+        if(index == 0){
+          if($(this).hasClass('mingdu')){
+            setLight(n,'#fff','#fff');
+          }
+					send({
+						'hues':{float: 0},
+						'brightness':{float: parseInt($('.mingdu').val())},
+						'saturation':{float: parseInt($('.baohe').val())},
+					});
+          // console.log("index:",index,':',$('.baohe').val(), $('.mingdu').val())
+        }else if( index == 1){
+          if($(this).hasClass('mingdu')){
+            setLight(n,$('.led-canvas').data('colorHsl'),'#fff');
+          }
+          send({
+            'saturation': {float: parseInt($('.baohe').val())},
+            'brightness': {float: parseInt($('.mingdu').val())},
+            'hues': {float: $('.led-canvas').data('color')}
+          })
+          // console.log("index:",index,':',$('.led-canvas').data('color'),$('.baohe').val(), $('.mingdu').val())
+        }else if( index == 2){
+          if($(this).hasClass('mingdu')){
+            setLight(n,'#fff','#fff');
+          }
+          send({
+            'saturation': {float: parseInt($('.baohe').val())},
+            'brightness': {float: parseInt($('.mingdu').val())},
+            'hues': {float: swIndex.data('hsl')}
+          })
+          // console.log("index:",index,':',swIndex.data('hsl'),$('.baohe').val(), $('.mingdu').val())
+        }
       })
     })
   }
 }
+
+uiRange.init();
